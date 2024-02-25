@@ -9,11 +9,15 @@
     <script>
         function updateCountdown() {
             var now = new Date();
-            var targetDate = new Date(2024, 5, 16); // 월은 0부터 시작하므로 5는 6월을 의미합니다.
-            var timeDiff = targetDate - now;
+            now.setHours(0, 0, 0, 0); // 현재 시간을 자정으로 설정합니다.
 
-            var days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-            document.getElementById("countdown").innerHTML = "<h1 style='color: white;''>" + days + " 일</h1>";
+            var targetDate = new Date(2024, 5, 16); // 월은 0부터 시작하므로 5는 6월을 의미합니다.
+            targetDate.setHours(0, 0, 0, 0); // 목표 날짜도 자정으로 설정합니다.
+
+            var timeDiff = targetDate - now;
+            var days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // 남은 일수를 계산합니다.
+
+            document.getElementById("countdown").innerHTML = "<h1 style='color: white;'>" + days + " 일</h1>";
         }
 
         updateCountdown();
